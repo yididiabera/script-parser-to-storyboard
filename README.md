@@ -240,14 +240,6 @@ script-parser-to-storyboard/
 
 -   Repository: [Long-form-AI-video-generation](https://github.com/Long-form-AI-video-generation)
 
-### Acknowledgements
-
-This project stands on the shoulders of giants. Special thanks to:
-
--   **PyMuPDF**, **OpenRouter**, and **Google Gemini** for their powerful tools and services.
--   The **Open Source Community** for providing the libraries and inspiration that make this project possible.
-
----
 
 <div align="center">
 
