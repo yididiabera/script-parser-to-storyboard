@@ -108,26 +108,26 @@ END OF SCRIPT
 
 def test_rag_system():
     """Test the RAG system functionality."""
-    print("🧪 Testing RAG System")
+    print(" Testing RAG System")
     print("=" * 30)
     
     # Create sample script
-    print("📝 Creating sample anime script...")
+    print(" Creating sample anime script...")
     sample_script_path = create_sample_script()
-    print(f"✅ Sample script created: {sample_script_path}")
+    print(f" Sample script created: {sample_script_path}")
     
     # Initialize RAG system
-    print("\n🔧 Initializing RAG system...")
+    print("\n Initializing RAG system...")
     rag = AnimeScriptRAG(chunk_size=200, chunk_overlap=20)  # Smaller chunks for testing
-    print("✅ RAG system initialized")
+    print(" RAG system initialized")
     
     # Add sample script to RAG
-    print(f"\n📚 Adding sample script to RAG database...")
+    print(f"\n Adding sample script to RAG database...")
     success = rag.add_pdf_to_rag(str(sample_script_path), "sample_anime_script")
     if success:
-        print("✅ Sample script added to RAG database")
+        print(" Sample script added to RAG database")
     else:
-        print("❌ Failed to add sample script to RAG database")
+        print(" Failed to add sample script to RAG database")
         return False
     
     # Test queries
@@ -139,49 +139,49 @@ def test_rag_system():
         "protecting the town"
     ]
     
-    print("\n🔍 Testing RAG queries...")
+    print("\n Testing RAG queries...")
     for i, query in enumerate(test_queries, 1):
         print(f"\n--- Test Query {i} ---")
         print(f"Query: '{query}'")
         
         results = rag.retrieve_relevant_context(query, top_k=3)
         if results:
-            print(f"✅ Found {len(results)} relevant results:")
+            print(f" Found {len(results)} relevant results:")
             for j, result in enumerate(results, 1):
                 print(f"  {j}. [{result['similarity_score']:.3f}] {result['text'][:80]}...")
         else:
-            print("❌ No results found")
+            print(" No results found")
     
     # Test RAG integration
-    print("\n🔗 Testing RAG integration...")
+    print("\n Testing RAG integration...")
     generator = RAGPromptGenerator()
     
     test_prompt = "Generate a video of Kenji and Yuki discovering the guardian spirit"
     enhanced_prompt = generator.enhance_video_generation_prompt(test_prompt)
     
-    print("✅ Enhanced prompt generated:")
+    print(" Enhanced prompt generated:")
     print("-" * 40)
     print(enhanced_prompt[:500] + "..." if len(enhanced_prompt) > 500 else enhanced_prompt)
     
     # Show database info
-    print("\n📊 Database Information:")
+    print("\n Database Information:")
     info = rag.get_database_info()
     for key, value in info.items():
         print(f"  {key}: {value}")
     
     # Cleanup
-    print(f"\n🧹 Cleaning up sample file...")
+    print(f"\n Cleaning up sample file...")
     if sample_script_path.exists():
         sample_script_path.unlink()
-        print("✅ Sample file cleaned up")
+        print(" Sample file cleaned up")
     
-    print("\n🎉 RAG system test completed successfully!")
+    print("\n RAG system test completed successfully!")
     return True
 
 
 def test_storyboard_enhancement():
     """Test storyboard enhancement with RAG."""
-    print("\n🎬 Testing Storyboard Enhancement")
+    print("\n Testing Storyboard Enhancement")
     print("=" * 35)
     
     # Create a sample storyboard
@@ -211,29 +211,29 @@ DIALOGUE: Yuki, I need your help with something.
         generator = RAGPromptGenerator()
         enhanced_path = generator.process_storyboard_file(str(storyboard_path))
         
-        print(f"✅ Enhanced storyboard saved to: {enhanced_path}")
+        print(f" Enhanced storyboard saved to: {enhanced_path}")
         
         # Show a preview of the enhanced content
         with open(enhanced_path, 'r', encoding='utf-8') as f:
             enhanced_content = f.read()
         
-        print("\n📖 Enhanced Storyboard Preview:")
+        print("\n Enhanced Storyboard Preview:")
         print("-" * 40)
         print(enhanced_content[:800] + "..." if len(enhanced_content) > 800 else enhanced_content)
         
         # Cleanup
         storyboard_path.unlink()
         Path(enhanced_path).unlink()
-        print("\n✅ Test files cleaned up")
+        print("\n Test files cleaned up")
         
     except Exception as e:
-        print(f"❌ Error testing storyboard enhancement: {e}")
+        print(f" Error testing storyboard enhancement: {e}")
         if storyboard_path.exists():
             storyboard_path.unlink()
 
 
 if __name__ == "__main__":
-    print("🚀 Starting RAG System Tests")
+    print(" Starting RAG System Tests")
     print("=" * 40)
     
     try:
@@ -244,9 +244,9 @@ if __name__ == "__main__":
             # Test storyboard enhancement
             test_storyboard_enhancement()
         
-        print("\n🎯 All tests completed!")
+        print("\n All tests completed!")
         
     except Exception as e:
-        print(f"❌ Test failed with error: {e}")
+        print(f" Test failed with error: {e}")
         import traceback
         traceback.print_exc()
